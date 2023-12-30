@@ -11,11 +11,11 @@
         <div class="col-lg-7">  
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'mb-4'}) do |f| %>
             <div class="row g-4">
-              <div class="field col-lg-6">
+              <div class="field col-lg-12">
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-100 form-control border-0 py-3', placeholder: 'Enter Email' %>
               </div>
 
-              <div class="field col-lg-6">
+              <div class="field col-lg-12">
                 <%= f.password_field :password, autocomplete: "current-password", class: 'w-100 form-control border-0 py-3', placeholder: 'Enter Password' %>
               </div>
 
@@ -23,6 +23,12 @@
                 <div class="field col-lg-6">
                   <%= f.check_box :remember_me %>
                   <%= f.label :remember_me %>
+                </div>
+              <% end %>
+
+              <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                <div class="field col-lg-6">  
+                  <%= link_to "Forgot your password?", new_password_path(resource_name) %>
                 </div>
               <% end %>
 
